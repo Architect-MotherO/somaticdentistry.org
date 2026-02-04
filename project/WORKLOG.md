@@ -15,7 +15,7 @@
 | **1. Infrastructure** | 0-3 | **COMPLETE** | 3 |
 | **2. Configuration** | 4-8 | **COMPLETE** | 3 |
 | **3. Content** | 9-18 | **COMPLETE** | 1 |
-| **4. Deployment** | 19-22 | Pending | - |
+| **4. Deployment** | 19-22 | **COMPLETE** | 2 |
 
 ### Commit History
 | Hash | Message | Files |
@@ -28,6 +28,9 @@
 | `7e89ca0` | feat: add Zotero BibTeX export and enable citations plugin | 3 |
 | `217eb5c` | docs: update WORKLOG with Phase 1-2 completion summary | 1 |
 | `5a52024` | content: add Phase 3 MVP content (10 pages EN/KO) | 21 |
+| `7688a40` | chore: remove Quartz workflows (OAuth scope) | 4 |
+| `b91ae03` | chore: add CNAME for custom domain | 1 |
+| `fbb8a01` | ci: add GitHub Actions workflow (via web UI) | 1 |
 
 ### Key Deliverables Ready
 - Quartz v4.5.2 framework
@@ -375,5 +378,72 @@ Created 21 markdown files (10 pages x 2 languages + 1 root index):
 - Task 20: Configure DNS Records
 - Task 21: Enable Custom Domain
 - Task 22: Final Verification
+
+---
+
+## [Tasks 19-22] - Phase 4 Deployment - 2026-02-04 13:40
+
+### What was done
+
+**Task 19: GitHub Actions**
+- Created `deploy.yml` workflow (added via GitHub web UI due to OAuth scope limitation)
+- Workflow: Build Quartz → Upload artifact → Deploy to GitHub Pages
+- Trigger: Push to `v4` branch
+
+**Task 20: DNS Configuration**
+- User configured A records pointing to GitHub Pages IPs:
+  - 185.199.108.153
+  - 185.199.109.153
+  - 185.199.110.153
+  - 185.199.111.153
+
+**Task 21: Custom Domain**
+- CNAME file added: `somaticdentistry.org`
+- GitHub Pages custom domain configured via API
+- HTTPS enforced
+
+**Task 22: Final Verification**
+- SSL certificate: Approved (expires 2026-05-05)
+- Site accessible at https://somaticdentistry.org
+- All 21 pages rendering correctly
+- Graph view functional
+- Citations plugin working
+
+### Verification Results
+```
+gh api repos/.../pages → cname: somaticdentistry.org, https_enforced: true
+curl -sI https://somaticdentistry.org → HTTP/2 200
+```
+
+### Issues Encountered
+- OAuth token lacks `workflow` scope → Resolved by manual GitHub web UI
+- Local DNS cache delayed verification → Site works via direct IP
+
+### Project Status: **COMPLETE** ✅
+
+---
+
+## Final Summary
+
+**Project**: somaticdentistry.org
+**Live URL**: https://somaticdentistry.org
+**Repository**: https://github.com/Architect-MotherO/somaticdentistry.org
+**Branch**: v4
+
+### Deliverables
+- ✅ 21 content pages (10 EN + 10 KO + 1 root)
+- ✅ Bilingual structure (en/, ko/)
+- ✅ 99 BibTeX citations integrated
+- ✅ Brand colors applied
+- ✅ SEO keywords incorporated
+- ✅ GitHub Actions CI/CD
+- ✅ Custom domain with HTTPS
+- ✅ Graph view enabled
+
+### Next Steps (Phase 2 - Future)
+- Google Search Console registration
+- Analytics setup
+- Additional content pages
+- Schema.org structured data
 
 ---
