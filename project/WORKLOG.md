@@ -92,3 +92,29 @@ somaticdentistry.org/
 - Task 3: Initialize GitHub Repository
 
 ---
+
+## [Task 3] - Initialize GitHub Repository - 2026-02-04 12:28
+
+### What was done
+- Verified gh CLI authenticated as Architect-MotherO
+- Created public repository: Architect-MotherO/somaticdentistry.org
+- Updated git remote from Quartz origin to new repo
+- Committed initial setup with project assets
+- Pushed v4 branch to GitHub
+
+### Verification Results
+- `gh repo view Architect-MotherO/somaticdentistry.org` -> repo exists
+- `git remote -v` -> origin points to new repo
+- Repository visible at https://github.com/Architect-MotherO/somaticdentistry.org
+
+### Issues Encountered
+- OAuth token lacks `workflow` scope for pushing GitHub Actions files
+- Workaround: Pushed code without workflows; will add in Task 19 with proper auth
+
+### Next Steps
+- Task 4: Export Zotero BibTeX
+- Task 5: InfraNodus SEO Keyword Analysis
+- Task 6: Configure Quartz for Bilingual
+- (Tasks 4-6 can run in parallel per plan)
+
+---
