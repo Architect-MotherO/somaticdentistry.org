@@ -1,8 +1,39 @@
 # SomaticDentistry.org Build Worklog
 
-**Project**: somaticdentistry.org
-**Started**: 2026-02-04
-**Session**: ses_3da00061bffeewsPKvcK35KUWn
+**Project**: somaticdentistry.org  
+**Repository**: https://github.com/Architect-MotherO/somaticdentistry.org  
+**Branch**: v4  
+**Started**: 2026-02-04 12:05 KST  
+**Session**: `ses_3da00061bffeewsPKvcK35KUWn`
+
+---
+
+## Progress Summary
+
+| Phase | Tasks | Status | Commits |
+|-------|-------|--------|---------|
+| **1. Infrastructure** | 0-3 | **COMPLETE** | 3 |
+| **2. Configuration** | 4-8 | **COMPLETE** | 3 |
+| **3. Content** | 9-18 | Pending | - |
+| **4. Deployment** | 19-22 | Pending | - |
+
+### Commit History
+| Hash | Message | Files |
+|------|---------|-------|
+| `00ef980` | chore: initial Quartz v4 setup with project assets | 6 |
+| `040d891` | chore: temporary remove workflows for initial push | 4 |
+| `786e766` | feat: configure Quartz for bilingual content structure | 12 |
+| `7653c19` | style: apply hybrid brand color system | 3 |
+| `550937a` | docs: add InfraNodus SEO keyword analysis | 2 |
+| `7e89ca0` | feat: add Zotero BibTeX export and enable citations plugin | 3 |
+
+### Key Deliverables Ready
+- Quartz v4.5.2 framework
+- Bilingual folder structure (en/ko)
+- Hybrid brand colors (6 CSS variables)
+- 99 BibTeX citations from Zotero
+- 7 SEO keyword clusters
+- Citations plugin configured
 
 ---
 
@@ -234,5 +265,57 @@ somaticdentistry.org/
 - Task 4: Export Zotero BibTeX (AWAITING USER)
 - Task 8: Enable Citations Plugin (BLOCKED by Task 4)
 - Ready to start content creation once 4 & 8 complete
+
+---
+
+## [Task 4] - Export Zotero BibTeX - 2026-02-04 12:40
+
+### What was done
+- Started Zotero application programmatically
+- Accessed Better-BibTeX API at localhost:23119
+- Exported full Zotero library to BibTeX format
+- Copied references.bib to content/references.bib
+
+### Verification Results
+- `wc -l content/references.bib` -> 1499 lines
+- `grep -c "^@" content/references.bib` -> 99 BibTeX entries
+- Contains all 46 DentoNeural Axis papers plus additional references
+- Build passes with references.bib in place
+
+### Issues Encountered
+- Initial attempt with manual GUI export not possible
+- Resolved by using Better-BibTeX HTTP API (Zotero running)
+
+### Next Steps
+- Task 8: Enable Citations Plugin
+
+---
+
+## [Task 8] - Enable Citations Plugin - 2026-02-04 12:42
+
+### What was done
+- Added Plugin.Citations() to quartz.config.ts transformers array
+- Configuration:
+  - bibliographyFile: "content/references.bib"
+  - linkCitations: true
+- Verified build passes with citations plugin enabled
+
+### Verification Results
+- `npx quartz build` -> Success (14 files emitted)
+- No errors related to citations plugin
+- Ready for content with `[@citationKey]` syntax
+
+### Citation Usage in Content
+```markdown
+According to Coste et al. [@costePiezo1Piezo2Are2010], Piezo channels...
+The meta-analysis by Qi et al. [@qi2021dose] showed...
+```
+
+### Issues Encountered
+- None
+
+### Next Steps
+- Phase 3: Content Creation (Tasks 9-18)
+- Task 9: Create Landing Page (EN/KO)
 
 ---
