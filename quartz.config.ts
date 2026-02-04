@@ -26,27 +26,30 @@ const config: QuartzConfig = {
         code: "IBM Plex Mono",
       },
       colors: {
+        // Hybrid Brand Color System - Somatic Dentistry
+        // Official Logo: Charcoal #282627, Orange #EE7337, Gray #D9D9D9
+        // Brand Essence: Blue #2E5984, Green #4A7C59, Warm #E8B4A0
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#faf8f8",           // Background (warm white)
+          lightgray: "#D9D9D9",       // Logo Gray (borders, dividers)
+          gray: "#b8b8b8",            // Graph links
+          darkgray: "#282627",        // Logo Charcoal (body text)
+          dark: "#282627",            // Logo Charcoal (headers)
+          secondary: "#2E5984",       // Systems Blue (links)
+          tertiary: "#4A7C59",        // Bio Green (hover, highlights)
+          highlight: "rgba(232, 180, 160, 0.15)",  // Warm Earth (link bg)
+          textHighlight: "#EE733788", // Logo Orange (text highlight)
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#1a1918",           // Dark warm background
+          lightgray: "#3d3a39",       // Muted gray
+          gray: "#646464",            // Graph links
+          darkgray: "#e8e6e5",        // Light text
+          dark: "#f5f3f2",            // Headers (light)
+          secondary: "#5a8ab8",       // Systems Blue (lighter)
+          tertiary: "#6b9e7d",        // Bio Green (lighter)
+          highlight: "rgba(232, 180, 160, 0.12)",  // Warm Earth
+          textHighlight: "#EE733766", // Logo Orange (muted)
         },
       },
     },

@@ -118,3 +118,38 @@ somaticdentistry.org/
 - (Tasks 4-6 can run in parallel per plan)
 
 ---
+
+## [Task 6] - Configure Quartz for Bilingual - 2026-02-04 12:30
+
+### What was done
+- Updated `quartz.config.ts`:
+  - pageTitle: "Somatic Dentistry"
+  - pageTitleSuffix: " | The DentoNeural Connection"
+  - baseUrl: "somaticdentistry.org"
+  - analytics: null (disabled for MVP)
+  - locale: "en-US" (English primary)
+- Created bilingual folder structure:
+  - content/en/ (English content)
+  - content/en/topics/
+  - content/en/papers/
+  - content/ko/ (Korean content)
+  - content/ko/topics/
+  - content/ko/papers/
+- Added .gitkeep files for empty directories
+- Verified build passes
+
+### Verification Results
+- `npx quartz build` -> Success (0 files, expected)
+- Folder structure verified
+- Config changes applied
+
+### Issues Encountered
+- None
+
+### Next Steps
+- Task 4: Export Zotero BibTeX (REQUIRES MANUAL GUI)
+- Task 5: InfraNodus SEO Keyword Analysis
+- Task 7: Apply Hybrid Brand Color System
+- Task 8: Enable Citations Plugin
+
+---

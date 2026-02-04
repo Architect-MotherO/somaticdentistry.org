@@ -1,3 +1,36 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+:root {
+  --logo-charcoal: #282627;
+  --logo-orange: #EE7337;
+  --logo-gray: #D9D9D9;
+  --accent-blue: #2E5984;
+  --accent-green: #4A7C59;
+  --bg-warm: #E8B4A0;
+}
+
+.page-title {
+  color: var(--logo-charcoal);
+}
+
+a.internal {
+  &:hover {
+    color: var(--logo-orange);
+  }
+}
+
+blockquote {
+  border-left-color: var(--accent-green);
+}
+
+.callout {
+  &.callout-info {
+    --callout-color: var(--accent-blue);
+  }
+  &.callout-tip {
+    --callout-color: var(--accent-green);
+  }
+  &.callout-warning {
+    --callout-color: var(--logo-orange);
+  }
+}
