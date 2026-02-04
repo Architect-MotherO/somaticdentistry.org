@@ -58,3 +58,4 @@ Somatic Dentistry is a systems-based approach that views the mouth not as an iso
 ---
 
 *This site presents curated research for educational purposes. The content is based on peer-reviewed publications and does not constitute medical advice. Consult your healthcare provider for personalized guidance.*
+<!-- date-fix -->

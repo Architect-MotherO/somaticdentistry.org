@@ -99,3 +99,4 @@ Emerging evidence suggests oral health may deserve similar attention in future r
 [[en/index|← Return to Home]]
 
 *This page synthesizes peer-reviewed research for educational purposes. Citations link to original sources.*
+<!-- date-fix -->
