@@ -12,7 +12,10 @@ const config: QuartzConfig = {
     pageTitleSuffix: " | The DentoNeural Connection",
     enableSPA: true,
     enablePopovers: true,
-    analytics: null,
+    analytics: {
+      provider: "google",
+      tagId: "G-6RDP8X67VD",
+    },
     locale: "en-US",
     baseUrl: "somaticdentistry.org",
     ignorePatterns: ["private", "templates", ".obsidian"],
