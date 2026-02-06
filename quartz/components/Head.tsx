@@ -5,6 +5,120 @@ import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
 import { CustomOgImagesEmitterName } from "../plugins/emitters/ogImage"
+
+// Schema.org JSON-LD structured data generators
+function buildWebSiteSchema(baseUrl: string, siteTitle: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteTitle,
+    url: `https://${baseUrl}`,
+    description:
+      "Systems-based approach exploring the connection between oral health, brain function, and whole-body wellness through peer-reviewed research.",
+    inLanguage: ["en", "ko"],
+    publisher: {
+      "@type": "Organization",
+      name: "Somatic Dentistry",
+      url: `https://${baseUrl}`,
+      logo: {
+        "@type": "ImageObject",
+        url: `https://${baseUrl}/static/icon.png`,
+      },
+      founder: {
+        "@type": "Person",
+        name: "KyungA Oh",
+        jobTitle: "Founder, Somatic Dentistry",
+        url: `https://${baseUrl}/en/about`,
+      },
+    },
+  }
+}
+
+function buildArticleSchema(
+  baseUrl: string,
+  slug: string,
+  title: string,
+  description: string,
+  tags: string[],
+  dates?: { created?: Date; modified?: Date; published?: Date },
+  ogImageUrl?: string,
+) {
+  const isScholarly = tags.some((t) =>
+    ["논문", "메타분석", "리뷰", "주요연구", "research", "paper"].includes(t),
+  )
+  const pageUrl = `https://${baseUrl}/${slug}`
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": isScholarly ? "ScholarlyArticle" : "Article",
+    headline: title,
+    description: description,
+    url: pageUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+    author: {
+      "@type": "Person",
+      name: "KyungA Oh",
+      url: `https://${baseUrl}/en/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Somatic Dentistry",
+      url: `https://${baseUrl}`,
+      logo: {
+        "@type": "ImageObject",
+        url: `https://${baseUrl}/static/icon.png`,
+      },
+    },
+    inLanguage: slug.startsWith("ko/") ? "ko" : "en",
+  }
+
+  if (ogImageUrl) {
+    schema.image = ogImageUrl
+  }
+
+  // Date handling
+  const created = dates?.created ?? dates?.published
+  const modified = dates?.modified
+  if (created) {
+    schema.datePublished = created.toISOString()
+  }
+  if (modified) {
+    schema.dateModified = modified.toISOString()
+  }
+
+  // Keywords from tags
+  if (tags.length > 0) {
+    schema.keywords = tags.join(", ")
+  }
+
+  // Scholarly-specific fields
+  if (isScholarly) {
+    schema.about = [
+      { "@type": "Thing", name: "Somatic Dentistry" },
+      { "@type": "Thing", name: "DentoNeural Connection" },
+    ]
+  }
+
+  return schema
+}
+
+function buildBreadcrumbSchema(baseUrl: string, slug: string, title: string) {
+  const parts = slug.split("/").filter(Boolean)
+  if (parts.length <= 1) return null
+
+  const items = parts.map((part, idx) => ({
+    "@type": "ListItem" as const,
+    position: idx + 1,
+    name: idx === parts.length - 1 ? title : part.charAt(0).toUpperCase() + part.slice(1),
+    item: `https://${baseUrl}/${parts.slice(0, idx + 1).join("/")}`,
+  }))
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items,
+  }
+}
+
 export default (() => {
   const Head: QuartzComponent = ({
     cfg,
@@ -98,6 +212,49 @@ export default (() => {
             return resource
           }
         })}
+
+        {/* Schema.org JSON-LD Structured Data */}
+        {cfg.baseUrl && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(buildWebSiteSchema(cfg.baseUrl, cfg.pageTitle)),
+            }}
+          />
+        )}
+        {cfg.baseUrl && fileData.slug && fileData.slug !== "index" && fileData.slug !== "404" && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(
+                buildArticleSchema(
+                  cfg.baseUrl,
+                  fileData.slug,
+                  fileData.frontmatter?.title ?? title,
+                  description,
+                  (fileData.frontmatter?.tags as string[]) ?? [],
+                  fileData.dates,
+                  usesCustomOgImage ? undefined : ogImageDefaultPath,
+                ),
+              ),
+            }}
+          />
+        )}
+        {cfg.baseUrl &&
+          fileData.slug &&
+          (() => {
+            const breadcrumb = buildBreadcrumbSchema(
+              cfg.baseUrl!,
+              fileData.slug!,
+              fileData.frontmatter?.title ?? title,
+            )
+            return breadcrumb ? (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+              />
+            ) : null
+          })()}
       </head>
     )
   }
