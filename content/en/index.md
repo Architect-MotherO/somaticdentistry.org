@@ -19,7 +19,7 @@ Emerging research reveals a profound connection between oral health and cognitiv
 
 ## What the Science Shows
 
-Recent meta-analyses have found that **tooth loss significantly increases dementia risk**. The relationship follows a dose-response pattern: the more teeth lost, the greater the cognitive decline [@qiDoseResponseMetaAnalysisTooth2021].
+Recent meta-analyses have found that **tooth loss significantly increases dementia risk**. The relationship follows a dose-response pattern: the more teeth lost, the greater the cognitive decline [@qi2021dose].
 
 But why? The answer lies in the remarkable sensory system embedded in your teeth and periodontal tissues—a system powered by specialized mechanoreceptors including Piezo channels, first characterized in the Nobel Prize-winning research of 2021 [@costePiezo1Piezo2Are2010].
 

@@ -22,7 +22,7 @@ A growing body of research demonstrates a significant association between tooth 
 
 ### Dose-Response Relationship
 
-The relationship between tooth loss and dementia risk follows a **dose-response pattern**—meaning the more teeth lost, the greater the risk. A comprehensive meta-analysis by Qi et al. found that each additional tooth lost was associated with a 1.4% increase in cognitive impairment risk and a 1.1% increase in dementia risk [@qiDoseResponseMetaAnalysisTooth2021].
+The relationship between tooth loss and dementia risk follows a **dose-response pattern**—meaning the more teeth lost, the greater the risk. A comprehensive meta-analysis by Qi et al. found that each additional tooth lost was associated with a 1.4% increase in cognitive impairment risk and a 1.1% increase in dementia risk [@qi2021dose].
 
 ### The Numbers
 
